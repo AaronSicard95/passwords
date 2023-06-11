@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>
+            {{user.username}}
+        </title>
+    </head>
+    <body>
+        {%if loggeduser%}
+        <button onclick="window.location.href='/logout'">Log Out</button>
+        {%else%}
+        <button onclick="window.location.href='/login'">login</button>
+        {%endif%}
+        <h1>{{user.username}}</h1>
+        <button onclick="window.location.href='/users/{{user.username}}/delete'">DeleteUser</button>
+        <button onclick="window.location.href='/users/{{user.username}}/feedback/add'">Add feedback</button>
+        <ul>
+            {%if user.posts%}
+            {%for post in user.posts%}
+            <li><h3>{{post.title}}</h3><br><p>{{post.content}}</p>
+            <button onclick="window.location.href='/feedback/{{post.id}}/delete'">Delete</button>
+            <button onclick="window.location.href='/feedback/{{post.id}}/update'">Update</button></li>
+            {%endfor%}
+            {%else%}
+            <li><h3>User has no feedback</h3></li>
+            {%endif%}
+        </ul>
+    </body>
+</html>
